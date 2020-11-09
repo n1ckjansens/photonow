@@ -9,8 +9,8 @@ interface userLocationDefaultState {
 }
 
 const initialState: userLocationDefaultState = {
-	lat: 44.6,
-	lng: 33.5,
+	lat: 55.7558,
+	lng: 37.6173,
 }
 
 export const userLocationReducer = (

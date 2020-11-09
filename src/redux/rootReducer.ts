@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { markersReducer } from './reducers/markersReducer'
-import { modalsReducer } from './reducers/modalReducer'
+import { modalsReducer } from './reducers/modalsReducer'
 import { userLocationReducer } from './reducers/userLocationReducer'
 
 export const rootReducer = combineReducers({
