@@ -1,0 +1,22 @@
+.callout__container
+  z-index: 2
+  position: absolute
+  padding: 16px
+  background-color: $white_background_color
+  background-clip: padding-box
+  width: 336px
+  border-radius: 8px
+  box-shadow: 0 4px 12px $marker_callout_shadow_color
+  cursor: default
+  &:after
+    content: ''
+    width: 30px
+    height: 30px
+    border-radius: 50% 50% 50% 0
+    position: absolute
+    transform: rotate(-45deg)
+    left: 50%
+    bottom: -3%
+    z-index: -1
+    margin: -20px 0 0 -20px
+    background-color: $white_background_color

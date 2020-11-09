@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Connected to Redux map component test Connected component should match snapshot 1`] = `
+<ContextProvider
+  value={null}
+>
+  <Map
+    hideMarkerCallout={[Function]}
+    markers={
+      Array [
+        Object {
+          "id": 0,
+          "location": Object {
+            "lat": 55.7558,
+            "lng": 37.6173,
+          },
+          "showCallout": false,
+        },
+      ]
+    }
+    showMarkerCallout={[Function]}
+    showModal={[Function]}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    userLocation={
+      Object {
+        "lat": 55.7558,
+        "lng": 37.6173,
+      }
+    }
+  />
+</ContextProvider>
+`;
+
+exports[`Dumb map component tests Should match snapshot 1`] = `
+<div
+  className="map__container"
+>
+  <t
+    bootstrapURLKeys={
+      Object {
+        "key": undefined,
+      }
+    }
+    center={
+      Object {
+        "lat": 55.7558,
+        "lng": 37.6173,
+      }
+    }
+    debounced={true}
+    defaultZoom={13}
+    distanceToMouse={[Function]}
+    googleMapLoader={[Function]}
+    heatmap={Object {}}
+    heatmapLibrary={false}
+    hoverDistance={30}
+    layerTypes={Array []}
+    onChildClick={[Function]}
+    onClick={[Function]}
+    options={
+      Object {
+        "clickableIcons": false,
+        "disableDefaultUI": true,
+        "disableDoubleClickZoom": true,
+        "zoom": 13,
+      }
+    }
+    shouldUnregisterMapOnUnmount={true}
+    style={
+      Object {
+        "height": "100%",
+        "margin": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": "100%",
+      }
+    }
+    yesIWantToUseGoogleMapApiInternals={false}
+  >
+    <Marker
+      key="0"
+      lat={55.7558}
+      lng={37.6173}
+      showCallout={false}
+    />
+  </t>
+</div>
+`;

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component tests Should match snapshot 1`] = `
+<header>
+  <div
+    className="header__branding"
+  >
+    <a
+      href="/"
+    >
+      <Logo />
+    </a>
+  </div>
+</header>
+`;

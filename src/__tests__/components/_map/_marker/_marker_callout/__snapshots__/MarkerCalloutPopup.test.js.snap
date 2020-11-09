@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Marker callout popup component test Should match snapshot 1`] = `
+<div
+  className="callout__container"
+>
+  <MarkerCalloutLayout />
+</div>
+`;
