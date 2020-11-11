@@ -8,6 +8,7 @@ import {
 	SET_MARKERS,
 } from '../types/markersTypes'
 
+//Function to set markers
 export function setMarkers(markers: Array<Marker>): SetMarkers {
 	return { type: SET_MARKERS, payload: markers }
 }
