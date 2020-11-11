@@ -1,0 +1,83 @@
+.filters__container
+    position: absolute
+    background-color: $white_background_color
+    box-shadow: 0 12px 12px $map_filters_shadow_color
+    border: 1px solid $map_filters_border_color
+    overflow: hidden
+    top: 96px
+    left: 32px
+    width: 334px
+    .selector
+        position: relative
+        padding-left: 16px
+        padding-right: 16px
+        display: flex
+        align-items: center
+        justify-content: space-between
+        height: 65px
+        border-bottom: 1px solid $map_filters_inner_border_color
+        cursor: pointer
+        background-color: $white_background_color
+        z-index: 10
+        transition: box-shadow .2s
+        &:hover
+            box-shadow: 0 12px 12px $map_filters_shadow_color
+        h6
+            color: $text_secondary_color
+            font-weight: 600
+        .location__icon
+            color: $primary_color
+            font-size: 16px
+        .dropdown__icon
+            color: $text_secondary_color
+            font-size: 20px
+    .service__selector
+        display: flex
+        align-items: center
+        justify-content: center
+        border-bottom: 1px solid $map_filters_inner_border_color
+        background-color: $white_background_color
+        .service
+            margin: 16px 0
+            border: 1px solid $map_filters_inner_border_color
+            box-sizing: border-box
+            display: flex
+            background-color: $white_background_color
+            height: 32px
+            border-radius: 20px
+            padding: 4px
+            .item
+                padding: 2px 8px
+                font-weight: 500
+                font-size: 14px
+                border-radius: 16px
+                line-height: 20px
+                color: $text_secondary_color
+                cursor: pointer
+                transition: background .2s
+            ._active
+                background: $black_background_color
+                color: $text_primary_color
+    .services__list
+        .service
+            display: flex
+            align-items: center
+            min-height: 32px
+            padding: 0 0 0 16px
+            font-weight: 500
+            font-size: 14px
+            line-height: 20px
+            transition: background .2s
+            cursor: pointer
+            &:hover
+                .service__icon
+                    filter: grayscale(0)
+            &:first-child
+                margin-top: 10px
+            &:last-child
+                margin-bottom: 10px
+            .service__icon
+                margin-right: 12px
+                color: $primary_color
+                filter: grayscale(100)
+                transition: filter .2s

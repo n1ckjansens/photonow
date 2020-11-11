@@ -2,6 +2,7 @@ import React from 'react'
 import GoogleMapReact, { ClickEventValue } from 'google-map-react'
 import Marker from './_marker/Marker'
 import MarkerCalloutLayout from './_marker/_marker_callout/MarkerCalloutLayout'
+import Filters from './_filters/Filters'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from '../../redux/rootReducer'
 import {
@@ -102,6 +103,7 @@ export const Map: React.FC<Props> = ({
 					/>
 				))}
 			</GoogleMapReact>
+			<Filters />
 		</div>
 	)
 }
