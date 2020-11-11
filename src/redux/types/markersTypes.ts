@@ -1,19 +1,12 @@
+import { Marker } from '../reducers/markersReducer'
+
 export const SET_MARKERS = 'MARKERS/SET_MARKERS'
 export const SHOW_MARKER_CALLOUT = 'MARKERS/SHOW_MARKER_CALLOUT'
 export const HIDE_MARKER_CALLOUT = 'MARKERS/HIDE_MARKER_CALLOUT'
 
 export interface SetMarkers {
 	type: typeof SET_MARKERS
-	payload: [
-		{
-			id: number
-			location: {
-				lat: number
-				lng: number
-			}
-			showCallout: boolean
-		}
-	]
+	payload: Array<Marker>
 }
 
 export interface ShowMarkerCallout {

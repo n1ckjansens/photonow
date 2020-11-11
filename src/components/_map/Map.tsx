@@ -93,12 +93,12 @@ export const Map: React.FC<Props> = ({
 				onChildClick={onChildClick}
 				onClick={onMapClick}
 			>
-				{markers.map((marker) => (
+				{Object.keys(markers).map((key, index) => (
 					<Marker
-						lat={marker.location.lat}
-						lng={marker.location.lng}
-						key={marker.id}
-						showCallout={marker.showCallout}
+						lat={markers[index].location.lat}
+						lng={markers[index].location.lng}
+						key={markers[index].id}
+						showCallout={markers[index].showCallout}
 					/>
 				))}
 			</GoogleMapReact>
@@ -110,7 +110,7 @@ export const Map: React.FC<Props> = ({
 const mapStateToProps = (state: RootState) => {
 	return {
 		userLocation: state.userLocation,
-		markers: state.markers,
+		markers: state.markers.byId,
 	}
 }
 

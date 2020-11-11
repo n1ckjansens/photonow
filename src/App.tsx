@@ -6,6 +6,7 @@ import './_sass/index.sass'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from './redux/rootReducer'
 import { getUserLocation } from './redux/actions/userLocationActions'
+import { setMarkers } from './redux/actions/markersActions'
 
 //Types of props recieved from redux <mapStateToProps, mapDispatchToProps>
 type PropsFromRedux = ConnectedProps<typeof connector>
@@ -18,11 +19,29 @@ type Props = PropsFromRedux
 //Main functional component
 //-----------------------------------------------------------
 //-----------------------------------------------------------
-const App: React.FC<Props> = ({ getUserLocation, showModal }) => {
+const App: React.FC<Props> = ({ getUserLocation, showModal, setMarkers }) => {
 	//Updating userLocation state when page loaded
 	useEffect(() => {
 		getUserLocation()
-	}, [getUserLocation])
+		setMarkers([
+			{
+				id: 0,
+				location: {
+					lat: 55.7558,
+					lng: 37.6173,
+				},
+				showCallout: false,
+			},
+			{
+				id: 1,
+				location: {
+					lat: 55.7599,
+					lng: 37.6292,
+				},
+				showCallout: false,
+			},
+		])
+	}, [getUserLocation, setMarkers])
 
 	return (
 		<>
@@ -43,6 +62,7 @@ const mapStateToProps = (state : RootState) => {
 //function to get dispatch actions through props
 const mapDispatchToProps = {
 	getUserLocation,
+	setMarkers
 }
 
 //connnector to connect component to redux and track types
