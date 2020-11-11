@@ -10,13 +10,13 @@ interface InitialState {
 }
 
 //initial state
-const initialState: InitialState = {
+const INITIAL_STATE: InitialState = {
 	lat: 55.7558,
 	lng: 37.6173,
 }
 
 export const userLocationReducer = (
-	state: InitialState = initialState,
+	state: InitialState = INITIAL_STATE,
 	action: UserLocationDispatchTypes
 ): InitialState => {
 	switch (action.type) {

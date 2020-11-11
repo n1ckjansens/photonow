@@ -7,13 +7,13 @@ interface InitialState {
 }
 
 //initial state
-const initialState: InitialState = {
+const INITIAL_STATE: InitialState = {
 	showModal: false,
 	modalContent: null,
 }
 
 export const modalsReducer = (
-	state: InitialState = initialState,
+	state: InitialState = INITIAL_STATE,
 	action: ModalDispatchTypes
 ): InitialState => {
 	switch (action.type) {

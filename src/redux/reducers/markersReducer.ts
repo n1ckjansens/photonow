@@ -16,7 +16,7 @@ interface InitialState {
 }
 
 //initial state
-const initialState: InitialState[] = [
+const INITIAL_STATE: InitialState[] = [
 	{
 		id: 0,
 		location: {
@@ -36,7 +36,7 @@ const initialState: InitialState[] = [
 ]
 
 export const markersReducer = (
-	state: InitialState[] = initialState,
+	state: InitialState[] = INITIAL_STATE,
 	action: MarkersDispatchTypes
 ): InitialState[] => {
 	switch (action.type) {
