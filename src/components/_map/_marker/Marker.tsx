@@ -1,12 +1,14 @@
 import React from 'react'
 import MarkerCalloutPopup from './_marker_callout/MarkerCalloutPopup'
 
+//Types if props component recieve
 interface Props {
 	showCallout : boolean,
 	lat: number, 
 	lng: number
 }
 
+//Main functional component
 const Marker: React.FC<Props> = ({ showCallout }) => {
 	return (
 		<div className="marker__container">

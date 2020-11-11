@@ -1,19 +1,21 @@
 import React from 'react'
 import GoogleMapReact, { ClickEventValue } from 'google-map-react'
+import Marker from './_marker/Marker'
+import MarkerCalloutLayout from './_marker/_marker_callout/MarkerCalloutLayout'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from '../../redux/rootReducer'
-import Marker from './_marker/Marker'
 import {
 	showMarkerCallout,
 	hideMarkerCallout,
 } from '../../redux/actions/markersActions'
 import { showModal } from '../../redux/actions/modalActions'
-import MarkerCalloutLayout from './_marker/_marker_callout/MarkerCalloutLayout'
 
+//Types of google API key
 interface IgoogleApiKey {
 	key: string
 }
 
+//Types of map settings
 interface IdefaultMapSettings {
 	zoom: number,
 	disableDefaultUI: boolean,
@@ -21,10 +23,17 @@ interface IdefaultMapSettings {
 	disableDoubleClickZoom: boolean,
 }
 
+//Types of props recieved from redux <mapStateToProps, mapDispatchToProps>
 type PropsFromRedux = ConnectedProps<typeof connector>
 
+//Type of props that comonent recieve
 type Props = PropsFromRedux
 
+//-----------------------------------------------------------
+//-----------------------------------------------------------
+//Main functional component
+//-----------------------------------------------------------
+//-----------------------------------------------------------
 export const Map: React.FC<Props> = ({
 	userLocation,
 	markers,
@@ -112,6 +121,7 @@ const mapDispatchToProps = {
 	showModal,
 }
 
+//connnector to connect component to redux and track types
 const connector = connect(mapStateToProps, mapDispatchToProps)
 
 export default connector(Map)

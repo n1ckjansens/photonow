@@ -7,10 +7,9 @@ import {
 	faArrowRight,
 } from '@fortawesome/free-solid-svg-icons'
 
-//SLIDER PROP ONLY FOR TESTING PURSPOSES IN NOT TESTING MODE IT SHOLD BE FALSY
-const MarkerCalloutLayout = ({testSlider = null}) => {
-	//useState is used to dynamicly select slider element when page loaded (initial state is a custom slider.scroll event FOR TESTING ONLY)
-	const [slider, setSlider] = useState<HTMLDivElement | null>(testSlider)
+const MarkerCalloutLayout = () => {
+	//useState is used to dynamicly select slider element when page loaded
+	const [slider, setSlider] = useState<HTMLDivElement | null>(null)
 
 	//linking slider element with reference
 	const sliderRef = useRef<HTMLDivElement>(null)

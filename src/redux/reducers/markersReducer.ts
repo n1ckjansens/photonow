@@ -5,7 +5,8 @@ import {
 	SHOW_MARKER_CALLOUT,
 } from '../types/markersTypes'
 
-interface markersDefaultState {
+//Types of initial state
+interface InitialState {
 	id: number
 	location: {
 		lat: number
@@ -14,7 +15,8 @@ interface markersDefaultState {
 	showCallout: boolean
 }
 
-const initialState: markersDefaultState[] = [
+//initial state
+const initialState: InitialState[] = [
 	{
 		id: 0,
 		location: {
@@ -34,9 +36,9 @@ const initialState: markersDefaultState[] = [
 ]
 
 export const markersReducer = (
-	state: markersDefaultState[] = initialState,
+	state: InitialState[] = initialState,
 	action: MarkersDispatchTypes
-): markersDefaultState[] => {
+): InitialState[] => {
 	switch (action.type) {
 		//Function to set markers from server
 		case SET_MARKERS:

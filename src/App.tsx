@@ -1,16 +1,23 @@
 import React, { useEffect } from 'react'
 import Header from './components/_global/Header'
 import Map from './components/_map/Map'
-import './_sass/index.sass'
-import { getUserLocation } from './redux/actions/userLocationActions'
-import { connect, ConnectedProps } from 'react-redux'
 import Modal from './components/_global/Modal'
+import './_sass/index.sass'
+import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from './redux/rootReducer'
+import { getUserLocation } from './redux/actions/userLocationActions'
 
+//Types of props recieved from redux <mapStateToProps, mapDispatchToProps>
 type PropsFromRedux = ConnectedProps<typeof connector>
 
+//Type of props that comonent recieve
 type Props = PropsFromRedux
 
+//-----------------------------------------------------------
+//-----------------------------------------------------------
+//Main functional component
+//-----------------------------------------------------------
+//-----------------------------------------------------------
 const App: React.FC<Props> = ({ getUserLocation, showModal }) => {
 	//Updating userLocation state when page loaded
 	useEffect(() => {
@@ -38,6 +45,7 @@ const mapDispatchToProps = {
 	getUserLocation,
 }
 
+//connnector to connect component to redux and track types
 const connector = connect(mapStateToProps, mapDispatchToProps)
 
 export default connector(App)

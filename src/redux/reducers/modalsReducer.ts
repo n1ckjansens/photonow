@@ -1,19 +1,21 @@
 import { HIDE_MODAL, ModalDispatchTypes, SHOW_MODAL } from '../types/modalTypes'
 
-interface modalsDefaultState {
+//Types of initial state
+interface InitialState {
 	showModal: boolean
 	modalContent: JSX.Element | null
 }
 
-const initialState: modalsDefaultState = {
+//initial state
+const initialState: InitialState = {
 	showModal: false,
 	modalContent: null,
 }
 
 export const modalsReducer = (
-	state = initialState,
+	state: InitialState = initialState,
 	action: ModalDispatchTypes
-): modalsDefaultState => {
+): InitialState => {
 	switch (action.type) {
 		case SHOW_MODAL:
 			if (!state.showModal) {
