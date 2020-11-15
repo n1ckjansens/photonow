@@ -95,7 +95,7 @@ export const Map: React.FC<Props> = ({
 				onChildClick={onChildClick}
 				onClick={onMapClick}
 			>
-				{markersIds.map((key, index) => (
+				{markersIds.map((index) => (
 					<Marker
 						lat={markers[index].location.lat}
 						lng={markers[index].location.lng}
