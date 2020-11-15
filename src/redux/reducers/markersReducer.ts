@@ -43,7 +43,7 @@ const byId = (
 			return markers
 		//Function to show marker's callout
 		case SHOW_MARKER_CALLOUT:
-			return mapValues(state, (key, index) => {
+			return mapValues(state, (_, index) => {
 				//Casting index value from string to number
 				const numericIndex = Number(index)
 				//Checking if callout of chosen marker is closed and id matches
@@ -71,7 +71,7 @@ const byId = (
 			})
 		//Function to hide marker's callout
 		case HIDE_MARKER_CALLOUT:
-			return mapValues(state, (key, index) => {
+			return mapValues(state, (_, index) => {
 				//Casting index value from string to number
 				const numericIndex = Number(index)
 				//Finding for any markers with open callouts, if found - closing it
@@ -95,7 +95,7 @@ const allIds = (
 	switch (action.type) {
 		//Updating Id's on markers setting
 		case SET_MARKERS:
-			return action.payload.map((v, index) => {
+			return action.payload.map((_, index) => {
 				return index
 			})
 		default:
