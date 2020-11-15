@@ -95,14 +95,19 @@ export const Map: React.FC<Props> = ({
 				onChildClick={onChildClick}
 				onClick={onMapClick}
 			>
-				{markersIds.map((index) => (
-					<Marker
-						lat={markers[index].location.lat}
-						lng={markers[index].location.lng}
-						key={markers[index].id}
-						showCallout={markers[index].showCallout}
+				{markersIds.map((index) => {
+					//Getting marker by index from store
+					const marker = markers[index]
+					//Rendering marker by current index
+					return(
+						<Marker
+						lat={marker.location.lat}
+						lng={marker.location.lng}
+						key={marker.id}
+						showCallout={marker.showCallout}
 					/>
-				))}
+					)
+				})}
 			</GoogleMapReact>
 			<Filters />
 		</div>
