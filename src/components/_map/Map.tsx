@@ -38,6 +38,7 @@ type Props = PropsFromRedux
 export const Map: React.FC<Props> = ({
 	userLocation,
 	markers,
+	markersIds,
 	showMarkerCallout,
 	hideMarkerCallout,
 	showModal,
@@ -94,7 +95,7 @@ export const Map: React.FC<Props> = ({
 				onChildClick={onChildClick}
 				onClick={onMapClick}
 			>
-				{Object.keys(markers).map((key, index) => (
+				{markersIds.map((key, index) => (
 					<Marker
 						lat={markers[index].location.lat}
 						lng={markers[index].location.lng}
@@ -113,6 +114,7 @@ const mapStateToProps = (state: RootState) => {
 	return {
 		userLocation: state.userLocation,
 		markers: state.markers.byId,
+		markersIds: state.markers.allIds
 	}
 }
 
