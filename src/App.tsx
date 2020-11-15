@@ -20,9 +20,10 @@ type Props = PropsFromRedux
 //-----------------------------------------------------------
 //-----------------------------------------------------------
 const App: React.FC<Props> = ({ getUserLocation, showModal, setMarkers }) => {
-	//Updating userLocation state when page loaded
 	useEffect(() => {
+		//Updating userLocation state when page loaded
 		getUserLocation()
+		//Simulating fetching and setting markers data from server
 		setMarkers([
 			{
 				id: 0,
