@@ -3,27 +3,29 @@
     flex-direction: row
     align-items: center
     .user__avatar
-    img
-        width: 60px
-        height: 60px
-        border-radius: 50%
-    .user__type
-        position: relative
-        display: flex
-        align-items: center
-        justify-content: center
-        width: 20px
-        height: 20px
-        background-color: $white_background_color
-        border-radius: 50%
-        box-shadow: 0 3px 6px $marker_callout_shadow_color
-        color: $primary_color
-        left: 45px
-        top: 60px
-        font-size: 11px
+        img
+            width: 60px
+            height: 60px
+            border-radius: 50%
+        .user__type
+            position: relative
+            display: flex
+            align-items: center
+            justify-content: center
+            width: 20px
+            height: 20px
+            background-color: $white_background_color
+            border-radius: 50%
+            box-shadow: 0 3px 6px $marker_callout_shadow_color
+            color: $primary_color
+            left: 45px
+            top: 60px
+            font-size: 11px
     h2
         padding-left: 15px
-        font-size: 20px
+        font-size: 23px
+        font-weight: 600
+        color: $text_secondary_color
 
 .user__credentials__secondary
     padding-top: 12px
@@ -92,7 +94,7 @@
     padding-top: calc(12px - 5px)
     b
         font-size: 14px
-        font-weight: 400
+        font-weight: 500
         padding-top: 5px
 
 .internal__service__features
@@ -107,7 +109,7 @@
         padding: 7px 20px
         border-radius: 50px
         color: $text_primary_color
-        font-weight: 500
+        font-weight: 600
         font-size: 14px
         margin-top: 10px
         cursor: pointer
@@ -118,13 +120,14 @@
     padding: 0
     outline: none
     cursor: pointer
-    background: $primary_color
+    background-image: $primary_gradient
     transition: opacity .2s
     margin-top: 16px
     width: 100%
     height: 48px
     font-style: normal
-    font-weight: 600
+    font-weight: 700
+    font-size: 16px
     text-align: center
     border-radius: 6px
     color: $text_primary_color
