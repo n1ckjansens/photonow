@@ -45,7 +45,7 @@ const byId = (
 		case SHOW_MARKER_CALLOUT:
 			return mapValues(state, (_, index) => {
 				//Casting index value from string to number
-				const numericIndex = Number(index)
+				const numericIndex = +index
 				//Checking if callout of chosen marker is closed and id matches
 				if (
 					!state[numericIndex].showCallout &&
@@ -73,7 +73,7 @@ const byId = (
 		case HIDE_MARKER_CALLOUT:
 			return mapValues(state, (_, index) => {
 				//Casting index value from string to number
-				const numericIndex = Number(index)
+				const numericIndex = +index
 				//Finding for any markers with open callouts, if found - closing it
 				if (state[numericIndex].showCallout) {
 					return { ...state[numericIndex], showCallout: false }

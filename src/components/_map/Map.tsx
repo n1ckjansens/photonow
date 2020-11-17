@@ -65,7 +65,7 @@ export const Map: React.FC<Props> = ({
 		//Getting window width
 		const displayWidth = window.innerWidth
 		//casting key to numeric type
-		const numericKey = Number(key)
+		const numericKey = +key
 		//If width less than 750px we sould show modal of marker callout instead of <MarkerCalloutPopup />
 		if (displayWidth > 750) {
 			//calling function to show marker's callout by key
