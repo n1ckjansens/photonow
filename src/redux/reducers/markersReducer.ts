@@ -94,8 +94,8 @@ const byId = (
 	switch (action.type) {
 		//Function to set markers from server
 		case SET_MARKERS:
-			const markers = mapKeys(action.payload, 'id')
-			return markers
+			//Normalizing data from Array to Object and Returning it
+			return mapKeys(action.payload, 'id')
 		//Function to show marker's callout
 		case SHOW_MARKER_CALLOUT:
 			return processShowMarkerCallout(state, action.payload)
