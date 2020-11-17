@@ -18,7 +18,7 @@ export type Marker = {
 }
 
 //Types of initial state by ID
-interface InitialStateById {
+interface IInitialStateById {
 	[key: number]: Marker
 }
 
@@ -26,16 +26,71 @@ interface InitialStateById {
 type InitialStateAllIds = Array<number>
 
 //initial state by id
-const INITIAL_STATE_BY_ID: InitialStateById = {}
+const INITIAL_STATE_BY_ID: IInitialStateById = {}
 
 //initial state All ids
 const INITIAL_STATE_ALL_IDS: InitialStateAllIds = []
 
+//function to process opening process of marker callout
+//function finds any open callouts with id different from action.payload and closes it
+const processShowMarkerCallout = (
+	state: IInitialStateById,
+	markerIndex: number
+): IInitialStateById => {
+	return mapValues(state, (_, index) => {
+		//Casting index value from string to number
+		const numericIndex = +index
+		//Checking if callout of chosen marker is closed and id matches
+		if (!state[numericIndex].showCallout && numericIndex === markerIndex) {
+			return {
+				...state[numericIndex],
+				showCallout: true,
+			}
+			//Checking if any callouts is open, if found - closing it
+		} else if (
+			state[numericIndex].showCallout &&
+			numericIndex !== markerIndex
+		) {
+			return {
+				...state[numericIndex],
+				showCallout: false,
+			}
+			//If no conditions kept - returning existing state
+		} else {
+			return { ...state[numericIndex] }
+		}
+	})
+}
+
+//function to process hiding process of marker callout
+//function finds any open callouts and closes it
+const processHideMarkerCallout = (
+	state: IInitialStateById
+): IInitialStateById => {
+	return mapValues(state, (_, index) => {
+		//Casting index value from string to number
+		const numericIndex = +index
+		//Finding for any markers with open callouts, if found - closing it
+		if (state[numericIndex].showCallout) {
+			return { ...state[numericIndex], showCallout: false }
+			//If no markers with open callouts found - returning existing state
+		} else {
+			return { ...state[numericIndex] }
+		}
+	})
+}
+
+//-----------------------------------------------------------
+//-----------------------------------------------------------
+//Main Reducers
+//-----------------------------------------------------------
+//-----------------------------------------------------------
+
 //Reducer to work with normilized markers state
 const byId = (
-	state: InitialStateById = INITIAL_STATE_BY_ID,
+	state: IInitialStateById = INITIAL_STATE_BY_ID,
 	action: MarkersDispatchTypes
-): InitialStateById => {
+): IInitialStateById => {
 	switch (action.type) {
 		//Function to set markers from server
 		case SET_MARKERS:
@@ -43,45 +98,10 @@ const byId = (
 			return markers
 		//Function to show marker's callout
 		case SHOW_MARKER_CALLOUT:
-			return mapValues(state, (_, index) => {
-				//Casting index value from string to number
-				const numericIndex = +index
-				//Checking if callout of chosen marker is closed and id matches
-				if (
-					!state[numericIndex].showCallout &&
-					numericIndex === action.payload
-				) {
-					return {
-						...state[numericIndex],
-						showCallout: true,
-					}
-					//Checking if any callouts is open, if found - closing it
-				} else if (
-					state[numericIndex].showCallout &&
-					numericIndex !== action.payload
-				) {
-					return {
-						...state[numericIndex],
-						showCallout: false,
-					}
-					//If no conditions kept - returning existing state
-				} else {
-					return { ...state[numericIndex] }
-				}
-			})
+			return processShowMarkerCallout(state, action.payload)
 		//Function to hide marker's callout
 		case HIDE_MARKER_CALLOUT:
-			return mapValues(state, (_, index) => {
-				//Casting index value from string to number
-				const numericIndex = +index
-				//Finding for any markers with open callouts, if found - closing it
-				if (state[numericIndex].showCallout) {
-					return { ...state[numericIndex], showCallout: false }
-					//If no markers with open callouts found - returning existing state
-				} else {
-					return { ...state[numericIndex] }
-				}
-			})
+			return processHideMarkerCallout(state)
 		default:
 			return state
 	}
