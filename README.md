@@ -24,8 +24,9 @@ The application offers the `photographer` the following functionality:
 1. React
 2. TypeScript
 3. Redux
-4. SASS
-5. SocketIo client (for chats)
+4. Webpack
+5. SASS
+6. SocketIo client (for chats)
 
 **Backend**:
 
