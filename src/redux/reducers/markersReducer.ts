@@ -18,7 +18,7 @@ export type Marker = {
 }
 
 //Types of initial state by ID
-interface IInitialStateById {
+interface InitialStateById {
 	[key: number]: Marker
 }
 
@@ -26,7 +26,7 @@ interface IInitialStateById {
 type InitialStateAllIds = Array<number>
 
 //initial state by id
-const INITIAL_STATE_BY_ID: IInitialStateById = {}
+const INITIAL_STATE_BY_ID: InitialStateById = {}
 
 //initial state All ids
 const INITIAL_STATE_ALL_IDS: InitialStateAllIds = []
@@ -34,9 +34,9 @@ const INITIAL_STATE_ALL_IDS: InitialStateAllIds = []
 //function to process opening process of marker callout
 //function finds any open callouts with id different from action.payload and closes it
 const processShowMarkerCallout = (
-	state: IInitialStateById,
+	state: InitialStateById,
 	markerIndex: number
-): IInitialStateById => {
+): InitialStateById => {
 	return mapValues(state, (_, index) => {
 		//Casting index value from string to number
 		const numericIndex = +index
@@ -65,8 +65,8 @@ const processShowMarkerCallout = (
 //function to process hiding process of marker callout
 //function finds any open callouts and closes it
 const processHideMarkerCallout = (
-	state: IInitialStateById
-): IInitialStateById => {
+	state: InitialStateById
+): InitialStateById => {
 	return mapValues(state, (_, index) => {
 		//Casting index value from string to number
 		const numericIndex = +index
@@ -88,9 +88,9 @@ const processHideMarkerCallout = (
 
 //Reducer to work with normilized markers state
 const byId = (
-	state: IInitialStateById = INITIAL_STATE_BY_ID,
+	state: InitialStateById = INITIAL_STATE_BY_ID,
 	action: MarkersDispatchTypes
-): IInitialStateById => {
+): InitialStateById => {
 	switch (action.type) {
 		//Function to set markers from server
 		case SET_MARKERS:

@@ -12,12 +12,12 @@ import {
 import { showModal } from '../../redux/actions/modalActions'
 
 //Types of google API key
-interface IGoogleApiKey {
+interface GoogleApiKey {
 	key: string
 }
 
 //Types of map settings
-interface IDefaultMapSettings {
+interface DefaultMapSettings {
 	zoom: number
 	disableDefaultUI: boolean
 	clickableIcons: boolean
@@ -44,12 +44,12 @@ export const Map: React.FC<Props> = ({
 	showModal,
 }) => {
 	//Getting google Api key from .env file
-	const googleApiKey: IGoogleApiKey = {
+	const googleApiKey: GoogleApiKey = {
 		key: process.env.GOOGLE_MAPS_API_KEY!,
 	}
 
 	//default map settings used in GoogleMapReact
-	const defaultMapSettings: IDefaultMapSettings = {
+	const defaultMapSettings: DefaultMapSettings = {
 		//zoom of map
 		zoom: 13,
 		//disabling default buttons of Google maps
