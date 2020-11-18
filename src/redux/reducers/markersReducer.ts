@@ -8,7 +8,7 @@ import {
 import { mapKeys, mapValues } from 'lodash'
 
 //Type of marker state
-export type Marker = {
+export interface Marker {
 	id: number
 	location: {
 		lat: number
