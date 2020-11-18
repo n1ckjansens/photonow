@@ -39,3 +39,4 @@ The application offers the `photographer` the following functionality:
 7. RabbitMQ
 8. SocketIo (for chats)
 9. AWS S3 Bucket (as image store)
+10. AWS EC2 (as host)
