@@ -24,17 +24,24 @@ module.exports = (env, argv) => ({
 			template: './public/index.html',
 		}),
 		new InterpolateHtmlPlugin(HtmlWebpackPlugin, {
-			PUBLIC_URL: argv.mode === 'production' ? './assets' : './public',
+			PUBLIC_URL: argv.mode === 'production' ? '.' : './public',
 		}),
 		new Dotenv({
-			safe: true, // load '.env.example' to verify the '.env' variables are all set. Can also be a string to a different file.
-			allowEmptyValues: true, // allow empty variables (e.g. `FOO=`) (treat it as empty string, rather than missing)
-			systemvars: true, // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
-			silent: true, // hide any errors
-			defaults: false, // load '.env.defaults' as the default values if empty.
+			safe: true,
+			allowEmptyValues: true,
+			systemvars: true,
+			silent: true,
+			defaults: false,
 		}),
 		new CopyWebpackPlugin({
-			patterns: [{ from: 'public', to: 'assets' }],
+			patterns: [
+				{
+					from: 'public',
+					globOptions: {
+						ignore: ['**/index.html'],
+					},
+				},
+			],
 		}),
 	],
 	optimization: {
@@ -51,23 +58,11 @@ module.exports = (env, argv) => ({
 			},
 			{
 				test: /\.s[ac]ss$/i,
-				use: [
-					// Creates `style` nodes from JS strings
-					'style-loader',
-					// Translates CSS into CommonJS
-					'css-loader',
-					// Compiles Sass to CSS
-					'sass-loader',
-				],
+				use: ['style-loader', 'css-loader', 'sass-loader'],
 			},
 			{
 				test: /\.css$/i,
-				use: [
-					// Creates `style` nodes from JS strings
-					'style-loader',
-					// Translates CSS into CommonJS
-					'css-loader',
-				],
+				use: ['style-loader', 'css-loader'],
 			},
 			{
 				test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
