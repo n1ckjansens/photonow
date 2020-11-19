@@ -22,27 +22,27 @@ const ServiceTargetSelector: React.FC<Props> = ({ setTargetFilter }) => {
 	}
 
 	//State of target selected
-	const [checked, setChecked] = useState<number>(1)
+	const [checkedIndex, setCheckedIndex] = useState<number>(1)
 
 	//useEffect to change target in redux state when checked value changes
 	useEffect(() => {
 		//Dispatching change to Redux
-		setTargetFilter(values[checked])
-	}, [checked])
+		setTargetFilter(values[checkedIndex])
+	}, [checkedIndex])
 
 	return (
 		<div className="service__selector">
 			<div className="service">
-				<div className={`background ${checked === 2 && 'right'}`} />
+				<div className={`background ${checkedIndex === 2 && 'right'}`} />
 				<div
-					onClick={() => setChecked(1)}
-					className={`item ${checked === 1 && 'active'}`}
+					onClick={() => setCheckedIndex(1)}
+					className={`item ${checkedIndex === 1 && 'active'}`}
 				>
 					Фотограф
 				</div>
 				<div
-					onClick={() => setChecked(2)}
-					className={`item ${checked === 2 && 'active'}`}
+					onClick={() => setCheckedIndex(2)}
+					className={`item ${checkedIndex === 2 && 'active'}`}
 				>
 					Модель
 				</div>
