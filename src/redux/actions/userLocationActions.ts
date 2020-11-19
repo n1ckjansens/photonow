@@ -57,6 +57,7 @@ const getUserCity = async (coords: Coords): Promise<string | null> => {
 		: null
 }
 
+//Main action function
 export function getUserLocation() {
 	return async (dispatch: Dispatch<UserLocationDispatchTypes>) => {
 		//Getting user position and dispatching it
