@@ -12,7 +12,7 @@ const INITIAL_STATE: InitialState = {
 	modalContent: null,
 }
 
-const modalsReducer = (
+export const modalsReducer = (
 	state: InitialState = INITIAL_STATE,
 	action: ModalDispatchTypes
 ): InitialState => {
@@ -29,5 +29,3 @@ const modalsReducer = (
 			return state
 	}
 }
-
-export default modalsReducer
