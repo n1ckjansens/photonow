@@ -33,7 +33,7 @@ const ServiceTargetSelector: React.FC<Props> = ({ setTargetFilter }) => {
 	return (
 		<div className="service__selector">
 			<div className="service">
-				<div className={`background ${checked === 2 && 'active-2'}`} />
+				<div className={`background ${checked === 2 && 'right'}`} />
 				<div
 					onClick={() => setChecked(1)}
 					className={`item ${checked === 1 && 'active'}`}
