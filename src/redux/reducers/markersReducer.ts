@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux'
+import { mapKeys, mapValues } from 'lodash'
 import {
 	HIDE_MARKER_CALLOUT,
 	MarkersDispatchTypes,
 	SET_MARKERS,
 	SHOW_MARKER_CALLOUT,
 } from '../types/markersTypes'
-import { mapKeys, mapValues } from 'lodash'
 
-//Type of marker state
+// Type of marker state
 export interface Marker {
 	id: number
 	location: {
@@ -47,10 +47,8 @@ const processShowMarkerCallout = (
 				showCallout: true,
 			}
 			// Checking if any callouts is open, if found - closing it
-		} else if (
-			state[numericIndex].showCallout &&
-			numericIndex !== markerIndex
-		) {
+		}
+		if (state[numericIndex].showCallout && numericIndex !== markerIndex) {
 			return {
 				...state[numericIndex],
 				showCallout: false,
@@ -67,13 +65,13 @@ const processHideMarkerCallout = (
 	state: InitialStateById
 ): InitialStateById => {
 	return mapValues(state, (_, index) => {
-		//Casting index value from string to number
+		// Casting index value from string to number
 		const numericIndex = +index
-		//Finding for any markers with open callouts, if found - closing it
+		// Finding for any markers with open callouts, if found - closing it
 		if (state[numericIndex].showCallout) {
 			return { ...state[numericIndex], showCallout: false }
 		}
-		//If no markers with open callouts found - returning existing state
+		// If no markers with open callouts found - returning existing state
 		return { ...state[numericIndex] }
 	})
 }

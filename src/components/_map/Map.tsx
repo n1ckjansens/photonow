@@ -1,9 +1,9 @@
 import React from 'react'
 import GoogleMapReact, { ClickEventValue } from 'google-map-react'
+import { connect, ConnectedProps } from 'react-redux'
 import Marker from './_marker/Marker'
 import MarkerCalloutLayout from './_marker/_marker_callout/MarkerCalloutLayout'
 import Filters from './_filters/Filters'
-import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from '../../redux/rootReducer'
 import {
 	showMarkerCallout,
@@ -76,7 +76,7 @@ export const Map: React.FC<Props> = ({
 		}
 	}
 
-	//Function to track clicks on Map and hide callouts on click
+	// Function to track clicks on Map and hide callouts on click
 	const onMapClick = ({ event }: ClickEventValue) => {
 		// Condition to check if user clicking on callout then we don't need to close it
 		if (!event.target.className) {

@@ -8,25 +8,25 @@ interface Values {
 	[key: number]: TargetValues
 }
 
-//Types of props recieved from redux <mapStateToProps, mapDispatchToProps>
+// Types of props recieved from redux <mapStateToProps, mapDispatchToProps>
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-//Type of props that comonent recieve
+// Type of props that comonent recieve
 type Props = PropsFromRedux
 
 const ServiceTargetSelector: React.FC<Props> = ({ setTargetFilter }: Props) => {
-	//Values of targets
+	// Values of targets
 	const values: Values = {
 		1: 'Photographer',
 		2: 'Model',
 	}
 
-	//State of target selected
+	// State of target selected
 	const [checkedIndex, setCheckedIndex] = useState<number>(1)
 
-	//useEffect to change target in redux state when checked value changes
+	// useEffect to change target in redux state when checked value changes
 	useEffect(() => {
-		//Dispatching change to Redux
+		// Dispatching change to Redux
 		setTargetFilter(values[checkedIndex])
 	}, [checkedIndex])
 
@@ -51,12 +51,12 @@ const ServiceTargetSelector: React.FC<Props> = ({ setTargetFilter }: Props) => {
 	)
 }
 
-//function to get dispatch actions through props
+// Function to get dispatch actions through props
 const mapDispatchToProps = {
 	setTargetFilter,
 }
 
-//connnector to connect component to redux and track types
+// Connnector to connect component to redux and track types
 const connector = connect(null, mapDispatchToProps)
 
 export default connector(ServiceTargetSelector)
