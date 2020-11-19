@@ -11,12 +11,12 @@ import {
 } from '../../redux/actions/markersActions'
 import { showModal } from '../../redux/actions/modalActions'
 
-//Types of google API key
+// Types of google API key
 interface GoogleApiKey {
 	key: string
 }
 
-//Types of map settings
+// Types of map settings
 interface DefaultMapSettings {
 	zoom: number
 	disableDefaultUI: boolean
@@ -24,15 +24,15 @@ interface DefaultMapSettings {
 	disableDoubleClickZoom: boolean
 }
 
-//Types of props recieved from redux <mapStateToProps, mapDispatchToProps>
+// Types of props recieved from redux <mapStateToProps, mapDispatchToProps>
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-//Type of props that comonent recieve
+// Type of props that comonent recieve
 type Props = PropsFromRedux
 
 //-----------------------------------------------------------
 //-----------------------------------------------------------
-//Main functional component
+// Main functional component
 //-----------------------------------------------------------
 //-----------------------------------------------------------
 export const Map: React.FC<Props> = ({
@@ -42,45 +42,45 @@ export const Map: React.FC<Props> = ({
 	showMarkerCallout,
 	hideMarkerCallout,
 	showModal,
-}) => {
-	//Getting google Api key from .env file
+}: Props) => {
+	// Getting google Api key from .env file
 	const googleApiKey: GoogleApiKey = {
-		key: process.env.GOOGLE_API_KEY!,
+		key: process.env.GOOGLE_API_KEY ? process.env.GOOGLE_API_KEY : '',
 	}
 
-	//default map settings used in GoogleMapReact
+	// Default map settings used in GoogleMapReact
 	const defaultMapSettings: DefaultMapSettings = {
-		//zoom of map
+		// Zoom of map
 		zoom: 13,
-		//disabling default buttons of Google maps
+		// Disabling default buttons of Google maps
 		disableDefaultUI: true,
-		//disabling click events for landmarks (such as subway stations)
+		// Disabling click events for landmarks (such as subway stations)
 		clickableIcons: false,
-		//disabling zoom by double tap on mobile devices
+		// Disabling zoom by double tap on mobile devices
 		disableDoubleClickZoom: true,
 	}
 
-	//Function to track clicks on Markers and show callouts on click
+	// Function to track clicks on Markers and show callouts on click
 	const onChildClick = (key: string) => {
-		//Getting window width
+		// Getting window width
 		const displayWidth = window.innerWidth
-		//casting key to numeric type
+		// Casting key to numeric type
 		const numericKey = +key
-		//If width less than 750px we sould show modal of marker callout instead of <MarkerCalloutPopup />
+		// If width less than 750px we sould show modal of marker callout instead of <MarkerCalloutPopup />
 		if (displayWidth > 750) {
-			//calling function to show marker's callout by key
+			// Calling function to show marker's callout by key
 			showMarkerCallout(numericKey)
 		} else {
-			//calling function to show modal of marker callout
+			// Calling function to show modal of marker callout
 			showModal(<MarkerCalloutLayout key={numericKey} />)
 		}
 	}
 
 	//Function to track clicks on Map and hide callouts on click
 	const onMapClick = ({ event }: ClickEventValue) => {
-		//Condition to check if user clicking on callout then we don't need to close it
+		// Condition to check if user clicking on callout then we don't need to close it
 		if (!event.target.className) {
-			//Function to close any open callouts
+			// Function to close any open callouts
 			hideMarkerCallout()
 		}
 	}
@@ -96,9 +96,9 @@ export const Map: React.FC<Props> = ({
 				onClick={onMapClick}
 			>
 				{markersIds.map((index) => {
-					//Getting marker by index from store
+					// Getting marker by index from store
 					const marker = markers[index]
-					//Rendering marker by current index
+					// Rendering marker by current index
 					return (
 						<Marker
 							lat={marker.location.lat}
@@ -114,7 +114,7 @@ export const Map: React.FC<Props> = ({
 	)
 }
 
-//function to work with app state through props
+// Function to work with app state through props
 const mapStateToProps = (state: RootState) => {
 	return {
 		userLocation: state.userLocation,
@@ -123,14 +123,14 @@ const mapStateToProps = (state: RootState) => {
 	}
 }
 
-//function to get dispatch actions through props
+// Function to get dispatch actions through props
 const mapDispatchToProps = {
 	showMarkerCallout,
 	hideMarkerCallout,
 	showModal,
 }
 
-//connnector to connect component to redux and track types
+// Connnector to connect component to redux and track types
 const connector = connect(mapStateToProps, mapDispatchToProps)
 
 export default connector(Map)

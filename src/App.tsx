@@ -1,29 +1,33 @@
 import React, { useEffect } from 'react'
+import { connect, ConnectedProps } from 'react-redux'
+import { RootState } from './redux/rootReducer'
+import getUserLocation from './redux/actions/userLocationActions'
+import { setMarkers } from './redux/actions/markersActions'
 import Header from './components/_global/Header'
 import Map from './components/_map/Map'
 import Modal from './components/_global/Modal'
 import './_sass/index.sass'
-import { connect, ConnectedProps } from 'react-redux'
-import { RootState } from './redux/rootReducer'
-import { getUserLocation } from './redux/actions/userLocationActions'
-import { setMarkers } from './redux/actions/markersActions'
 
-//Types of props recieved from redux <mapStateToProps, mapDispatchToProps>
+// Types of props recieved from redux <mapStateToProps, mapDispatchToProps>
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-//Type of props that comonent recieve
+// Type of props that comonent recieve
 type Props = PropsFromRedux
 
 //-----------------------------------------------------------
 //-----------------------------------------------------------
-//Main functional component
+// Main functional component
 //-----------------------------------------------------------
 //-----------------------------------------------------------
-const App: React.FC<Props> = ({ getUserLocation, showModal, setMarkers }) => {
+const App: React.FC<Props> = ({
+	getUserLocation,
+	showModal,
+	setMarkers,
+}: Props) => {
 	useEffect(() => {
-		//Updating userLocation state when page loaded
+		// Updating userLocation state when page loaded
 		getUserLocation()
-		//Simulating fetching and setting markers data from server
+		// Simulating fetching and setting markers data from server
 		setMarkers([
 			{
 				id: 0,
@@ -53,20 +57,20 @@ const App: React.FC<Props> = ({ getUserLocation, showModal, setMarkers }) => {
 	)
 }
 
-//function to work with app state through props
-const mapStateToProps = (state : RootState) => {
+// function to work with app state through props
+const mapStateToProps = (state: RootState) => {
 	return {
 		showModal: state.modals.showModal,
 	}
 }
 
-//function to get dispatch actions through props
+// function to get dispatch actions through props
 const mapDispatchToProps = {
 	getUserLocation,
-	setMarkers
+	setMarkers,
 }
 
-//connnector to connect component to redux and track types
+// connnector to connect component to redux and track types
 const connector = connect(mapStateToProps, mapDispatchToProps)
 
 export default connector(App)

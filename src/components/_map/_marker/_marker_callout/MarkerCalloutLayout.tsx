@@ -7,27 +7,29 @@ import {
 	faArrowRight,
 } from '@fortawesome/free-solid-svg-icons'
 
-const MarkerCalloutLayout = () => {
-	//useState is used to dynamicly select slider element when page loaded
+const MarkerCalloutLayout: React.FC = () => {
+	// useState is used to dynamicly select slider element when page loaded
 	const [slider, setSlider] = useState<HTMLDivElement | null>(null)
 
-	//linking slider element with reference
+	// Linking slider element with reference
 	const sliderRef = useRef<HTMLDivElement>(null)
 
-	//Finding slider element in DOM when page loaded
+	// Finding slider element in DOM when page loaded
 	React.useEffect(() => {
 		const slider = sliderRef.current
 		setSlider(slider)
 	}, [])
 
-	//Function to scroll slider to the left when user pressed left arrow
+	// Function to scroll slider to the left when user pressed left arrow
 	const leftArrowPressed = () => {
-		slider && slider.scroll({ left: slider.scrollLeft - 130, behavior: 'smooth' })
+		slider &&
+			slider.scroll({ left: slider.scrollLeft - 130, behavior: 'smooth' })
 	}
 
-	//Function to scroll slider to the right when user pressed right arrow
+	// Function to scroll slider to the right when user pressed right arrow
 	const rightArrowPressed = () => {
-		slider && slider.scroll({ left: slider.scrollLeft + 130, behavior: 'smooth' })
+		slider &&
+			slider.scroll({ left: slider.scrollLeft + 130, behavior: 'smooth' })
 	}
 
 	return (

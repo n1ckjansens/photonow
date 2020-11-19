@@ -14,7 +14,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 //Type of props that comonent recieve
 type Props = PropsFromRedux
 
-const ServiceTargetSelector: React.FC<Props> = ({ setTargetFilter }) => {
+const ServiceTargetSelector: React.FC<Props> = ({ setTargetFilter }: Props) => {
 	//Values of targets
 	const values: Values = {
 		1: 'Photographer',

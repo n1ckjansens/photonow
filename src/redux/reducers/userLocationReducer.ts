@@ -3,7 +3,7 @@ import {
 	UserLocationDispatchTypes,
 } from '../types/userLocationTypes'
 
-//Types of initial state
+// Types of initial state
 export interface LocationState {
 	coords: {
 		lat: number
@@ -12,7 +12,7 @@ export interface LocationState {
 	city: string
 }
 
-//initial state
+// Initial state
 const INITIAL_STATE: LocationState = {
 	coords: {
 		lat: 55.7558,

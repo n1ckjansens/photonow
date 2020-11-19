@@ -6,24 +6,24 @@ import { rootReducer } from './redux/rootReducer'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 
-//Adding __REDUX_DEVTOOLS_EXTENSION__ to TypeScript window object
+// Adding __REDUX_DEVTOOLS_EXTENSION__ to TypeScript window object
 declare global {
 	interface Window {
 		__REDUX_DEVTOOLS_EXTENSION__?: typeof compose
 	}
 }
 
-//variable to enable redux Dev tools
+// variable to enable redux Dev tools
 let reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__
 	? window.__REDUX_DEVTOOLS_EXTENSION__()
-	: (a: any) => a
+	: (a: null) => a
 
-//Condition to disable redux Dev tools in production mode
+// Condition to disable redux Dev tools in production mode
 if (process.env.NODE_ENV === 'production') {
-	reduxDevTools = (a: any) => a
+	reduxDevTools = (a: null) => a
 }
 
-//creating redux store
+// creating redux store
 const store = createStore(
 	rootReducer,
 	compose(applyMiddleware(thunk), reduxDevTools)

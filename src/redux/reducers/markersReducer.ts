@@ -17,36 +17,36 @@ export interface Marker {
 	showCallout: boolean
 }
 
-//Types of initial state by ID
+// Types of initial state by ID
 interface InitialStateById {
 	[key: number]: Marker
 }
 
-//Tpe of initial state of all ids
+// Type of initial state of all ids
 type InitialStateAllIds = Array<number>
 
-//initial state by id
+// Initial state by id
 const INITIAL_STATE_BY_ID: InitialStateById = {}
 
-//initial state All ids
+// Initial state All ids
 const INITIAL_STATE_ALL_IDS: InitialStateAllIds = []
 
-//function to process opening process of marker callout
-//function finds any open callouts with id different from action.payload and closes it
+// Function to process opening process of marker callout
+// Function finds any open callouts with id different from action.payload and closes it
 const processShowMarkerCallout = (
 	state: InitialStateById,
 	markerIndex: number
 ): InitialStateById => {
 	return mapValues(state, (_, index) => {
-		//Casting index value from string to number
+		// Casting index value from string to number
 		const numericIndex = +index
-		//Checking if callout of chosen marker is closed and id matches
+		// Checking if callout of chosen marker is closed and id matches
 		if (!state[numericIndex].showCallout && numericIndex === markerIndex) {
 			return {
 				...state[numericIndex],
 				showCallout: true,
 			}
-			//Checking if any callouts is open, if found - closing it
+			// Checking if any callouts is open, if found - closing it
 		} else if (
 			state[numericIndex].showCallout &&
 			numericIndex !== markerIndex
@@ -55,15 +55,14 @@ const processShowMarkerCallout = (
 				...state[numericIndex],
 				showCallout: false,
 			}
-			//If no conditions kept - returning existing state
-		} else {
-			return { ...state[numericIndex] }
 		}
+		// If no conditions kept - returning existing state
+		return { ...state[numericIndex] }
 	})
 }
 
-//function to process hiding process of marker callout
-//function finds any open callouts and closes it
+// Function to process hiding process of marker callout
+// Function finds any open callouts and closes it
 const processHideMarkerCallout = (
 	state: InitialStateById
 ): InitialStateById => {
@@ -73,33 +72,32 @@ const processHideMarkerCallout = (
 		//Finding for any markers with open callouts, if found - closing it
 		if (state[numericIndex].showCallout) {
 			return { ...state[numericIndex], showCallout: false }
-			//If no markers with open callouts found - returning existing state
-		} else {
-			return { ...state[numericIndex] }
 		}
+		//If no markers with open callouts found - returning existing state
+		return { ...state[numericIndex] }
 	})
 }
 
 //-----------------------------------------------------------
 //-----------------------------------------------------------
-//Main Reducers
+// Main Reducers
 //-----------------------------------------------------------
 //-----------------------------------------------------------
 
-//Reducer to work with normilized markers state
+// Reducer to work with normilized markers state
 const byId = (
 	state: InitialStateById = INITIAL_STATE_BY_ID,
 	action: MarkersDispatchTypes
 ): InitialStateById => {
 	switch (action.type) {
-		//Function to set markers from server
+		// Function to set markers from server
 		case SET_MARKERS:
-			//Normalizing data from Array to Object and Returning it
+			// Normalizing data from Array to Object and Returning it
 			return mapKeys(action.payload, 'id')
-		//Function to show marker's callout
+		// Function to show marker's callout
 		case SHOW_MARKER_CALLOUT:
 			return processShowMarkerCallout(state, action.payload)
-		//Function to hide marker's callout
+		// Function to hide marker's callout
 		case HIDE_MARKER_CALLOUT:
 			return processHideMarkerCallout(state)
 		default:
@@ -107,13 +105,13 @@ const byId = (
 	}
 }
 
-//Reducer to track all ID's
+// Reducer to track all ID's
 const allIds = (
 	state: InitialStateAllIds = INITIAL_STATE_ALL_IDS,
 	action: MarkersDispatchTypes
 ) => {
 	switch (action.type) {
-		//Updating Id's on markers setting
+		// Updating Id's on markers setting
 		case SET_MARKERS:
 			return action.payload.map((_, index) => {
 				return index

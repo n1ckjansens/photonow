@@ -1,12 +1,12 @@
 import { TargetValues } from '../../components/_map/_filters/_selectors/ServiceTargetSelector'
 import { FiltersDispatchTypes, SET_TARGET_FILTER } from '../types/filtersTypes'
 
-//Types of initial state
+// Types of initial state
 interface InitialState {
 	target: TargetValues
 }
 
-//initial state
+// Initial state
 const INITIAL_STATE: InitialState = {
 	target: 'Photographer',
 }
