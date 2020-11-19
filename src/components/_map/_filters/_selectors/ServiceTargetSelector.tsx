@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { setTargetFilter } from '../../../../redux/actions/filtersActions'
-import { RootState } from '../../../../redux/rootReducer'
 
 export type TargetValues = 'Photographer' | 'Model'
 
