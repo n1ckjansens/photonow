@@ -1,6 +1,6 @@
 import React from 'react'
 import CitySelector from './_selectors/CitySelector'
-import ServiceTargetSelector from './_selectors/ServiceSelector'
+import ServiceTargetSelector from './_selectors/ServiceTargetSelector'
 import ServiceTypeSelector from './_selectors/ServiceTypeSelector'
 
 const Filters: React.FC = () => {

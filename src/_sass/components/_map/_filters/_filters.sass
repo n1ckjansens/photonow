@@ -47,6 +47,18 @@
             height: 32px
             border-radius: 20px
             padding: 4px
+            .background
+                content: ''
+                width: 86px
+                height: 19px
+                z-index: 0
+                position: absolute
+                background-color: #000
+                padding: 2px 8px
+                border-radius: 16px
+                transition: all .2s
+            .active-2
+                transform: translateX(+102px)
             .item
                 padding: 2px 8px
                 font-weight: 600
@@ -55,9 +67,11 @@
                 line-height: 20px
                 color: $text_secondary_color
                 cursor: pointer
-                transition: background .2s
-            ._active
-                background: $black_background_color
+                transition: all .2s
+                width: 86px
+                text-align: center
+                z-index: 1
+            .active
                 color: $text_primary_color
     .services__list
         .service
@@ -75,7 +89,7 @@
             &:hover
                 .service__icon
                     filter: grayscale(0)
-                opacity: 1
+                    opacity: 1
             &:first-child
                 margin-top: 10px
             &:last-child
