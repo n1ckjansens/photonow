@@ -38,30 +38,8 @@ const success = async (
 	}
 }
 
-//Requesting city data from Yandex API
-const fetchCityFromYandex = async (coords: Coords): Promise<string | null> => {
-	//Getting Yandex Api key from .env file
-	const API_KEY = process.env.YANDEX_GEOCODE_API_KEY
-
-	//Getting user city by requesting https://geocode-maps.yandex.ru
-	const result = await request<any>(
-		`https://geocode-maps.yandex.ru/1.x/?apikey=${API_KEY}&format=json&geocode=${coords.lat},${coords.lng}&kind=locality&results=1`
-	)
-
-	//Checking if we found city
-	const isCityFound =
-		result.parsedBody.response.GeoObjectCollection.metaDataProperty
-			.GeocoderResponseMetaData.found
-
-	//If city found - returning it
-	return +isCityFound
-		? result.parsedBody.response.GeoObjectCollection.featureMember[0].GeoObject
-				.name
-		: null
-}
-
 //Requesting city data from Google API
-const fetchCityFromGoogle = async (coords: Coords): Promise<string | null> => {
+const getUserCity = async (coords: Coords): Promise<string | null> => {
 	//Getting Google Api key from .env file
 	const API_KEY = process.env.GOOGLE_API_KEY
 
@@ -77,16 +55,6 @@ const fetchCityFromGoogle = async (coords: Coords): Promise<string | null> => {
 	return +isCityFound
 		? result.parsedBody.results[0].address_components[0].short_name
 		: null
-}
-
-//Function to get user City
-const getUserCity = async (coords: Coords): Promise<string | null> => {
-	//Trying to get city from Yandex API if Yandex didn't found city - trying to get city from Google API
-	//If both Yandex and Google unable to found city null will be returned
-	const city = (await fetchCityFromYandex(coords))
-		? await fetchCityFromYandex(coords)
-		: await fetchCityFromGoogle(coords)
-	return city
 }
 
 export function getUserLocation() {
