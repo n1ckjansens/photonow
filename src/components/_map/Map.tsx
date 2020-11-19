@@ -45,7 +45,7 @@ export const Map: React.FC<Props> = ({
 }) => {
 	//Getting google Api key from .env file
 	const googleApiKey: GoogleApiKey = {
-		key: process.env.GOOGLE_MAPS_API_KEY!,
+		key: process.env.GOOGLE_API_KEY!,
 	}
 
 	//default map settings used in GoogleMapReact
