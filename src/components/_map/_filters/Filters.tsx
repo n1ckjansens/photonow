@@ -1,7 +1,7 @@
 import React from 'react'
 import CitySelector from './_selectors/CitySelector'
 import ServiceTargetSelector from './_selectors/ServiceSelector'
-import ServiceTypeSelectorWithList from './_selectors/ServiceTypeSelector'
+import ServiceTypeSelector from './_selectors/ServiceTypeSelector'
 
 const Filters: React.FC = () => {
 	return (
@@ -11,7 +11,7 @@ const Filters: React.FC = () => {
 			{/* Selector of Service Target (Photographer or Model) */}
 			<ServiceTargetSelector />
 			{/* Selector of services type available */}
-			<ServiceTypeSelectorWithList />
+			<ServiceTypeSelector />
 		</div>
 	)
 }

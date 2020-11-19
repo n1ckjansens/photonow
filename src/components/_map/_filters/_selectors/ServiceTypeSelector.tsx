@@ -2,7 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown, faCameraRetro } from '@fortawesome/free-solid-svg-icons'
 
-const ServiceTypeSelectorWithList: React.FC = () => (
+const ServiceTypeSelector: React.FC = () => (
 	<>
 		<div className="service__type__selector selector">
 			<h6>Выберите тип Сьемки</h6>
@@ -33,4 +33,4 @@ const ServiceTypeSelectorWithList: React.FC = () => (
 	</>
 )
 
-export default ServiceTypeSelectorWithList
+export default ServiceTypeSelector
