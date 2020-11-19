@@ -1,4 +1,5 @@
 import { Dispatch } from 'redux'
+import { LocationState } from '../reducers/userLocationReducer'
 import {
 	GET_USER_LOCATION,
 	UserLocationDispatchTypes,
@@ -12,10 +13,18 @@ export function getUserLocation() {
 		//parsing response to json format
 		const json = await response.json()
 
-		//making object with data from response
-		const location = {
+		//making object with coords from response
+		const coords = {
 			lat: json.latitude,
 			lng: json.longitude,
+		}
+
+		//TODO: Fetch city from Yandex Geocords API
+
+		//making object of location
+		const location: LocationState = {
+			coords: { ...coords },
+			city: 'Moscow',
 		}
 
 		// Setting user location to App state

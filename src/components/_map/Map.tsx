@@ -90,7 +90,7 @@ export const Map: React.FC<Props> = ({
 			<GoogleMapReact
 				bootstrapURLKeys={googleApiKey}
 				defaultZoom={defaultMapSettings.zoom}
-				center={userLocation}
+				center={userLocation.coords}
 				options={defaultMapSettings}
 				onChildClick={onChildClick}
 				onClick={onMapClick}
