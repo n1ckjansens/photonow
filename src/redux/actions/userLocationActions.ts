@@ -61,5 +61,5 @@ export function getUserLocation() {
 }
 
 //TODO:
-// Make check for browser support of Geolocation API
+// -Make check for browser support of Geolocation API
 // -Make Geolocation error callback with custom alerts
