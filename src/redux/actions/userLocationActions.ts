@@ -52,7 +52,7 @@ const getUserCity = async (coords: Coords): Promise<string | null> => {
 	const isCityFound = result.parsedBody.results.length
 
 	//If city found - returning it
-	return +isCityFound
+	return isCityFound
 		? result.parsedBody.results[0].address_components[0].short_name
 		: null
 }
