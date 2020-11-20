@@ -2,20 +2,22 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
+const ESLintPlugin = require('eslint-webpack-plugin')
 const path = require('path')
 
-module.exports = (env, argv) => ({
-	entry: './src/index.tsx',
+module.exports = {
+	mode: 'development',
+	entry: path.resolve(__dirname, '..', 'src', 'index.tsx'),
 	resolve: {
 		extensions: ['.tsx', '.ts', '.js'],
 	},
 	output: {
-		filename: '[name].bundle.[chunkhash].js',
-		path: path.resolve(__dirname, 'build'),
+		filename: '[name].[contenthash].js',
+		path: path.resolve(__dirname, '..', 'build'),
 	},
 	devServer: {
-		host: '0.0.0.0',
-		port: 8080,
+		host: 'localhost',
+		port: 3000,
 		inline: true,
 	},
 	plugins: [
@@ -24,7 +26,7 @@ module.exports = (env, argv) => ({
 			template: './public/index.html',
 		}),
 		new InterpolateHtmlPlugin(HtmlWebpackPlugin, {
-			PUBLIC_URL: argv.mode === 'production' ? '.' : './public',
+			PUBLIC_URL: './public',
 		}),
 		new Dotenv({
 			safe: true,
@@ -43,10 +45,22 @@ module.exports = (env, argv) => ({
 				},
 			],
 		}),
+		new ESLintPlugin({
+			extensions: ['.tsx', '.ts', '.js'],
+			formatter: 'prettier',
+		}),
 	],
 	optimization: {
+		moduleIds: 'deterministic',
+		runtimeChunk: 'single',
 		splitChunks: {
-			chunks: 'all',
+			cacheGroups: {
+				vendor: {
+					test: /[\\/]node_modules[\\/]/,
+					name: 'vendors',
+					chunks: 'all',
+				},
+			},
 		},
 	},
 	module: {
@@ -78,4 +92,4 @@ module.exports = (env, argv) => ({
 			},
 		],
 	},
-})
+}
