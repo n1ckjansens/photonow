@@ -7,7 +7,10 @@ const path = require('path')
 
 module.exports = {
 	mode: 'development',
-	entry: path.resolve(__dirname, '..', 'src', 'index.tsx'),
+	entry: [
+		'webpack-dev-server/client?http://localhost:3000',
+		path.resolve(__dirname, '..', 'src', 'index.tsx')
+	],
 	resolve: {
 		extensions: ['.tsx', '.ts', '.js'],
 	},
@@ -18,7 +21,10 @@ module.exports = {
 	devServer: {
 		host: 'localhost',
 		port: 3000,
-		inline: true,
+		open: true,
+		publicPath: '/',
+		contentBase: path.resolve(__dirname, '..', 'build'),
+		watchContentBase: true,
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
@@ -26,7 +32,7 @@ module.exports = {
 			template: './public/index.html',
 		}),
 		new InterpolateHtmlPlugin(HtmlWebpackPlugin, {
-			PUBLIC_URL: './public',
+			PUBLIC_URL: '.',
 		}),
 		new Dotenv({
 			safe: true,
