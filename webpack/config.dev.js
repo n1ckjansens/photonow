@@ -5,10 +5,13 @@ const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
 const path = require('path')
 
+const host = process.env.DEV_SERVER_HOST_NAME || 'localhost'
+const port = process.env.DEV_SERVER_PORT || 3000
+
 module.exports = {
 	mode: 'development',
 	entry: [
-		'webpack-dev-server/client?http://localhost:3000',
+		`webpack-dev-server/client?http://${host}:${port}`,
 		path.resolve(__dirname, '..', 'src', 'index.tsx')
 	],
 	resolve: {
@@ -19,8 +22,8 @@ module.exports = {
 		path: path.resolve(__dirname, '..', 'build'),
 	},
 	devServer: {
-		host: 'localhost',
-		port: 3000,
+		host,
+		port,
 		open: true,
 		publicPath: '/',
 		contentBase: path.resolve(__dirname, '..', 'build'),
