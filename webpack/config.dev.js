@@ -9,9 +9,9 @@ const host = process.env.DEV_SERVER_HOST_NAME || 'localhost'
 const port = process.env.DEV_SERVER_PORT || 3000
 
 module.exports = {
+	target: 'web',
 	mode: 'development',
 	entry: [
-		`webpack-dev-server/client?http://${host}:${port}`,
 		path.resolve(__dirname, '..', 'src', 'index.tsx')
 	],
 	resolve: {
