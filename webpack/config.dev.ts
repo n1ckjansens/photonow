@@ -9,9 +9,7 @@ import path from 'path'
 const webpackConfiguration: webpack.Configuration = {
 	target: 'web',
 	mode: 'development',
-	entry: [
-		path.resolve(__dirname, '..', 'src', 'index.tsx')
-	],
+	entry: [path.resolve(__dirname, '..', 'src', 'index.tsx')],
 	resolve: {
 		extensions: ['.tsx', '.ts', '.js'],
 	},
@@ -55,11 +53,7 @@ const webpackConfiguration: webpack.Configuration = {
 				},
 			],
 		}),
-		new ESLintPlugin({
-			extensions: ['.tsx', '.ts', '.js'],
-			formatter: 'prettier',
-		}),
-		new webpack.HotModuleReplacementPlugin()
+		new webpack.HotModuleReplacementPlugin(),
 	],
 	optimization: {
 		moduleIds: 'deterministic',
@@ -78,7 +72,7 @@ const webpackConfiguration: webpack.Configuration = {
 		rules: [
 			{
 				test: /\.tsx?$/,
-				use: 'babel-loader',
+				use: ['babel-loader', 'eslint-loader'],
 				exclude: /node_modules/,
 			},
 			{

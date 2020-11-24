@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import GoogleMapReact, { ClickEventValue } from 'google-map-react'
 import { connect, ConnectedProps } from 'react-redux'
 import Marker from './_marker/Marker'
@@ -9,6 +9,7 @@ import {
 	showMarkerCallout,
 	hideMarkerCallout,
 } from '../../redux/actions/markersActions'
+import { setMarkers } from '../../redux/actions/markersActions'
 import { showModal } from '../../redux/actions/modalActions'
 
 // Types of google API key
@@ -42,7 +43,30 @@ export const Map: React.FC<Props> = ({
 	showMarkerCallout,
 	hideMarkerCallout,
 	showModal,
+	setMarkers,
 }: Props) => {
+	// Simulating fetching and setting markers data from server
+	useEffect(() => {
+		setMarkers([
+			{
+				id: 0,
+				location: {
+					lat: 55.7558,
+					lng: 37.6173,
+				},
+				showCallout: false,
+			},
+			{
+				id: 1,
+				location: {
+					lat: 55.7599,
+					lng: 37.6292,
+				},
+				showCallout: false,
+			},
+		])
+	}, [])
+
 	// Getting google Api key from .env file
 	const googleApiKey: GoogleApiKey = {
 		key: process.env.GOOGLE_API_KEY ? process.env.GOOGLE_API_KEY : '',
@@ -128,6 +152,7 @@ const mapDispatchToProps = {
 	showMarkerCallout,
 	hideMarkerCallout,
 	showModal,
+	setMarkers,
 }
 
 // Connnector to connect component to redux and track types
