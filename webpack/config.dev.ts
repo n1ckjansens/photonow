@@ -26,6 +26,7 @@ const webpackConfiguration: webpack.Configuration = {
 		publicPath: '/',
 		contentBase: path.resolve(__dirname, '..', 'build'),
 		watchContentBase: true,
+		inline: true,
 		hot: true,
 	},
 	plugins: [

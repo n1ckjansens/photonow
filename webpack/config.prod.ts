@@ -59,7 +59,7 @@ const webpackConfiguration: webpack.Configuration = {
 		rules: [
 			{
 				test: /\.tsx?$/,
-				use: 'awesome-typescript-loader',
+				use: 'babel-loader',
 				exclude: /node_modules/,
 			},
 			{
