@@ -1,14 +1,12 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const Dotenv = require('dotenv-webpack')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
-const ESLintPlugin = require('eslint-webpack-plugin')
-const path = require('path')
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import Dotenv from 'dotenv-webpack'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
+import InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin'
+import ESLintPlugin from 'eslint-webpack-plugin'
+import webpack from 'webpack'
+import path from 'path'
 
-const host = process.env.DEV_SERVER_HOST_NAME || 'localhost'
-const port = process.env.DEV_SERVER_PORT || 3000
-
-module.exports = {
+const webpackConfiguration: webpack.Configuration = {
 	target: 'web',
 	mode: 'development',
 	entry: [
@@ -22,18 +20,20 @@ module.exports = {
 		path: path.resolve(__dirname, '..', 'build'),
 	},
 	devServer: {
-		host,
-		port,
+		host: 'localhost',
+		port: 3000,
 		open: true,
 		publicPath: '/',
 		contentBase: path.resolve(__dirname, '..', 'build'),
 		watchContentBase: true,
+		hot: true,
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			inject: true,
 			template: './public/index.html',
 		}),
+		//@ts-ignore
 		new InterpolateHtmlPlugin(HtmlWebpackPlugin, {
 			PUBLIC_URL: '.',
 		}),
@@ -58,6 +58,7 @@ module.exports = {
 			extensions: ['.tsx', '.ts', '.js'],
 			formatter: 'prettier',
 		}),
+		new webpack.HotModuleReplacementPlugin()
 	],
 	optimization: {
 		moduleIds: 'deterministic',
@@ -76,7 +77,7 @@ module.exports = {
 		rules: [
 			{
 				test: /\.tsx?$/,
-				use: 'awesome-typescript-loader',
+				use: 'babel-loader',
 				exclude: /node_modules/,
 			},
 			{
@@ -102,3 +103,5 @@ module.exports = {
 		],
 	},
 }
+
+export default webpackConfiguration

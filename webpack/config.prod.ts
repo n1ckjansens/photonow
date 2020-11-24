@@ -1,10 +1,11 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const Dotenv = require('dotenv-webpack')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
-const path = require('path')
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import Dotenv from 'dotenv-webpack'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
+import InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin'
+import path from 'path'
+import webpack from 'webpack'
 
-module.exports = {
+const webpackConfiguration: webpack.Configuration = {
 	mode: 'production',
 	entry: path.resolve(__dirname, '..', 'src', 'index.tsx'),
 	resolve: {
@@ -19,6 +20,7 @@ module.exports = {
 			inject: true,
 			template: './public/index.html',
 		}),
+		//@ts-ignore
 		new InterpolateHtmlPlugin(HtmlWebpackPlugin, {
 			PUBLIC_URL: '.',
 		}),
@@ -83,3 +85,5 @@ module.exports = {
 		],
 	},
 }
+
+export default webpackConfiguration
