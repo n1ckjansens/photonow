@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader/root'
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from './redux/rootReducer'
@@ -57,20 +58,24 @@ const App: React.FC<Props> = ({
 	)
 }
 
-// function to work with app state through props
+// Function to work with app state through props
 const mapStateToProps = (state: RootState) => {
 	return {
 		showModal: state.modals.showModal,
 	}
 }
 
-// function to get dispatch actions through props
+// Function to get dispatch actions through props
 const mapDispatchToProps = {
 	getUserLocation,
 	setMarkers,
 }
 
-// connnector to connect component to redux and track types
+// Connnector to connect component to redux and track types
 const connector = connect(mapStateToProps, mapDispatchToProps)
 
-export default connector(App)
+// Connecting app to redux
+const connectedApp = connector(App)
+
+// Adding Hot Module Replacement support and exporting component
+export default hot(connectedApp)
