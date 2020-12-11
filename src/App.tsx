@@ -1,4 +1,3 @@
-import { hot } from 'react-hot-loader/root'
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from './redux/rootReducer'
@@ -51,8 +50,5 @@ const mapDispatchToProps = {
 // Connnector to connect component to redux and track types
 const connector = connect(mapStateToProps, mapDispatchToProps)
 
-// Connecting app to redux
-const connectedApp = connector(App)
-
-// Adding Hot Module Replacement support and exporting component
-export default hot(connectedApp)
+// Connecting app to redux and exporting component
+export default connector(App)

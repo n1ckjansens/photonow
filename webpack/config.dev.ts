@@ -2,8 +2,8 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import Dotenv from 'dotenv-webpack'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin'
-import ESLintPlugin from 'eslint-webpack-plugin'
 import webpack from 'webpack'
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
 import path from 'path'
 
 const webpackConfiguration: webpack.Configuration = {
@@ -54,6 +54,7 @@ const webpackConfiguration: webpack.Configuration = {
 			],
 		}),
 		new webpack.HotModuleReplacementPlugin(),
+		new ReactRefreshWebpackPlugin(),
 	],
 	optimization: {
 		moduleIds: 'deterministic',
